@@ -1,6 +1,6 @@
 {
   "name": "php-fpm-alpine",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Alpine based PHP FPM with CakePHP and Phalcon readiness",
   "main": "index.js",
   "scripts": {
