@@ -1,6 +1,6 @@
 FROM php:5.6-fpm-alpine
 
-MAINTAINER angelxmoreno <angelxmoreno@gmail.com>
+LABEL maintainer="angelxmoreno@gmail.com"
 
 ENV PHALCON_VERSION 3.2.1
 
