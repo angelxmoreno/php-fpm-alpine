@@ -2,12 +2,12 @@ FROM php:5.6-fpm-alpine
 
 LABEL maintainer="angelxmoreno@gmail.com"
 
-# @TODO use ARG to tkae in the version of Phalcon on build time
+# @TODO use ARG to take in the version of Phalcon on build time
 ENV PHALCON_VERSION 3.2.1
 
 # Pre run
 RUN docker-php-source extract \
-    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev \
+    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev \
 
 # Install mysql goodness
     && docker-php-ext-install mysqli pdo_mysql \
@@ -15,7 +15,13 @@ RUN docker-php-source extract \
 # Instaling redis
 # @TODO define redis version
     && pecl install redis \
-    && docker-php-ext-enable redis \
+
+# Installing mongo
+# @TODO define mongodb version
+    && pecl install mongo \
+
+# enable pecl modules
+    && docker-php-ext-enable redis mongo \
 
 # Installing CakePHP deps
     && apk add icu-libs icu \
@@ -31,7 +37,7 @@ RUN docker-php-source extract \
 
 # Post run
     && docker-php-source delete \
-    && apk del .build-deps \
+    && apk del --purge .build-deps \
     && rm -rf /tmp/pear \
     && rm -rf /var/cache/apk/* \
     && rm -rf /usr/local/etc/php/cphalcon-${PHALCON_VERSION} \
