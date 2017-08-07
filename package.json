@@ -1,0 +1,29 @@
+{
+  "name": "php-fpm-alpine",
+  "version": "1.0.0",
+  "description": "Alpine based PHP FPM with CakePHP and Phalcon readiness",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelxmoreno/php-fpm-alpine.git"
+  },
+  "keywords": [
+    "Alpine",
+    "PHP",
+    "FPM",
+    "CakePHP",
+    "Phalcon"
+  ],
+  "author": "Angel S. Moreno <angelxmoreno@gmail.com> (https://angelxmoreno.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angelxmoreno/php-fpm-alpine/issues"
+  },
+  "homepage": "https://github.com/angelxmoreno/php-fpm-alpine#readme",
+  "dependencies": {
+    "dockerfilelint": "^1.2.0"
+  }
+}
