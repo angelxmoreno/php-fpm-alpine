@@ -1,0 +1,7 @@
+# from .gitignore
+node_modules/
+
+# extras
+.git
+bin/
+package.json

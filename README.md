@@ -12,3 +12,10 @@ Alpine based PHP FPM with CakePHP and Phalcon readiness
 - redis
 - intl
 - phalcon
+
+# Building
+1. `./bin/dockerlint`
+2. `docker build --compress -t angelxmoreno/php-fpm-alpine:x.y.z .`
+
+# Helper scripts
+1. `./bin/dockerlint` : Checks the syntax of the Dockerfile file
