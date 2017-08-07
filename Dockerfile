@@ -2,6 +2,7 @@ FROM php:5.6-fpm-alpine
 
 LABEL maintainer="angelxmoreno@gmail.com"
 
+# @TODO use ARG to tkae in the version of Phalcon on build time
 ENV PHALCON_VERSION 3.2.1
 
 # Pre run
