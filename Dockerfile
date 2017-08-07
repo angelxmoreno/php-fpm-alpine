@@ -6,40 +6,32 @@ ENV PHALCON_VERSION 3.2.1
 
 # Pre run
 RUN docker-php-source extract \
-    && apk update \
-    && apk add autoconf g++ make pcre-dev
+    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev \
 
 # Install mysql goodness
-RUN docker-php-ext-install \
-    mysqli \
-    pdo_mysql
+    && docker-php-ext-install mysqli pdo_mysql \
 
 # Instaling redis
-RUN apk add \
-    autoconf \
-    g++ \
-    make \
+# @TODO define redis version
     && pecl install redis \
-    && docker-php-ext-enable redis
+    && docker-php-ext-enable redis \
 
 # Installing CakePHP deps
-RUN apk add \
-    icu-libs \
-    icu \
-    icu-dev \
-    && docker-php-ext-install intl
-
-# Post run
-RUN docker-php-source delete \
-    && rm -rf /tmp/pear \
-    && rm -rf /var/cache/apk/*
+    && apk add icu-libs icu \
+    && docker-php-ext-install intl \
 
 # Installing Phalcon deps
-RUN set -xe && \
-    cd /usr/local/etc/php/ && \
-    curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz && \
-    tar xzf v${PHALCON_VERSION}.tar.gz && \
-    cd cphalcon-${PHALCON_VERSION}/build && \
-    sh install && \
-    echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini && \
-    cd ../.. && rm -rf v${PHALCON_VERSION}.tar.gz cphalcon-${PHALCON_VERSION}
+    && cd /usr/local/etc/php/ \
+    && curl -LO https://github.com/phalcon/cphalcon/archive/v${PHALCON_VERSION}.tar.gz \
+    && tar xzf v${PHALCON_VERSION}.tar.gz \
+    && cd cphalcon-${PHALCON_VERSION}/build \
+    && sh install \
+    && echo "extension=phalcon.so" > /usr/local/etc/php/conf.d/phalcon.ini \
+
+# Post run
+    && docker-php-source delete \
+    && apk del .build-deps \
+    && rm -rf /tmp/pear \
+    && rm -rf /var/cache/apk/* \
+    && rm -rf /usr/local/etc/php/cphalcon-${PHALCON_VERSION} \
+    && rm /usr/local/etc/php/v${PHALCON_VERSION}.tar.gz
