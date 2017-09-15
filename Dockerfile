@@ -5,6 +5,9 @@ LABEL maintainer="angelxmoreno@gmail.com"
 # @TODO use ARG to take in the version of Phalcon on build time
 ENV PHALCON_VERSION 3.2.1
 
+# Installing Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
 # Pre run
 RUN docker-php-source extract \
     && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev \
