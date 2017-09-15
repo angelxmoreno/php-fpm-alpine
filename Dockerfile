@@ -10,7 +10,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Pre run
 RUN docker-php-source extract \
-    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev \
+    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev git openssh \
 
 # Install mysql goodness
     && docker-php-ext-install mysqli pdo_mysql \
