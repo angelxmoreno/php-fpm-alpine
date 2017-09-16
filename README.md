@@ -7,6 +7,7 @@ Alpine based PHP FPM with CakePHP and Phalcon readiness
 - Phalcon 3.2.1
 - Git 2.8.6
 - Composer 1.5.2
+- XDebug 2.5.5
 
 # Extra PHP modules installed
 - mysqli
