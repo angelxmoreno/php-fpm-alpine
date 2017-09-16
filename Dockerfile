@@ -10,17 +10,18 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Pre run
 RUN docker-php-source extract \
-    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev git openssh \
+    && apk add --update --virtual .build-deps autoconf g++ make pcre-dev icu-dev openssl-dev \
+
+# Install GIT
+    && apk add git openssh \
 
 # Install mysql goodness
     && docker-php-ext-install mysqli pdo_mysql \
 
 # Instaling redis
-# @TODO define redis version
     && pecl install redis \
 
 # Installing mongo
-# @TODO define mongodb version
     && pecl install mongo \
 
 # enable pecl modules
