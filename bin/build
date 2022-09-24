@@ -15,7 +15,7 @@ fi
 
 if [[ ${MODE} == "prod" ]]
 then
-    CMD="docker build --no-cache --compress --tag=angelxmoreno/php-fpm-alpine:${TAG} ."
+    CMD="docker build --no-cache --compress -t angelxmoreno/php-fpm-alpine:latest -t angelxmoreno/php-fpm-alpine:${TAG} ."
 else
     CMD="docker build --tag=angelxmoreno/php-fpm-alpine:${TAG} .";
 fi
